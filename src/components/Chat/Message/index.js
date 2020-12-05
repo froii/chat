@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './style.css';
 
 export const Message = ({getMessage}) => {
-   const [messages, addMessage] = useState([]);
+  const [messages, addMessage] = useState([]);
 
-  useEffect(()=>{
-     getMessage((newMessage)=> {addMessage(arr=>[...arr, newMessage]);
+  useEffect(() => {
+    getMessage((newMessage) => {
+      addMessage(arr => [...arr, newMessage]);
     });
   }, []);
 
   return (
     <ul>
-      {messages.map(({content, user, timestamp, id})=>{
+      {messages.map(({content, user, timestamp, id}) => {
         const date = new Date(timestamp)
-        const hours =date.getHours()
+        const hours = date.getHours()
         const minutes = date.getMinutes()
         const sentDate = `${hours}:${minutes}`
 
-        const randomColor = Math.floor(Math.random() * 255)
-        console.log(randomColor);
+        const randomColor = () => Math.floor(Math.random() * 255)
+        const color = `rgba(${randomColor()},${randomColor()},${randomColor()}) `
+
         return (
           <li className='message_wrapper' key={id}>
-            <div  className={user === 'Me' ? 'message self' : 'message'} >
-              <p  className='message__user '>{ user }</p>
-              <p> { content } </p>
-              <span className='message__date'> { sentDate }  </span>
+            <div className={user === 'Me' ? 'message self' : 'message'}>
+              <p className='message__user' style={{color}}>{user}</p>
+              <p> {content} </p>
+              <span className='message__date'> {sentDate}  </span>
             </div>
           </li>
         )
       })}
-    </ul>
-  );
-}
+        </ul>
+        );
+      };
 
 
 Message.uiName = "Message";
