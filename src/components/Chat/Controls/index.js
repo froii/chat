@@ -11,13 +11,12 @@ export const Controls = memo(({sendMessage, onTyping}) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(e.target.text.value);
-    sendMessage(e.target.text.value);
+    const myMessage = e.target.text.value;
+    if(myMessage) sendMessage(myMessage);
   };
 
   const typing = (e) => {
     stopTyping();
-
     onTyping((name)=> { name !== 'Me' && toggleUserTyping(name); });
   };
 
