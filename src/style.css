@@ -1,10 +1,16 @@
+html,
 body {
-    background: #f5fbff;
     font-family: Helvetica, sans-serif;
     font-size: 16px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
 }
 
 .message {
+    display: inline-block;
+    text-decoration: none;
     position: relative;
     padding: 12px 15px;
     background: white;
@@ -26,7 +32,7 @@ body {
 }
 
 .message.self {
-    background: $blue;
+    background: blue;
     color: white;
 }
 
@@ -35,5 +41,5 @@ body {
     right: 0;
     transform: translateX(10px);
     border-right: 0;
-    border-left: 17px solid $blue; 
+    border-left: 17px solid blue;
 }

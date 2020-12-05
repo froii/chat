@@ -1,0 +1,54 @@
+.controls {
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-end;
+} 
+
+input,
+button {
+    height: 40px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px 1px rgba(36, 91, 140, 0.15);
+    border: none;
+}
+
+
+input:focus,
+input:active {
+  outline: none;
+  border: 1px solid #3794ff;
+}
+
+input {
+    border-radius: 9999px;
+    background: white;
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+button {
+    background: #3794ff;
+    border-radius: 3px;
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    text-transform: none;
+    box-sizing: border-box;
+}
+
+  ::placeholder {
+    font-size: 15px;
+    font-weight: 300;
+    font-family: Helvetica;
+    color: #e6e6e6;
+  }
+
+
+.typing_info {
+  display: inline-block;
+  font-size: 12px;
+  font-style: italic;
+  color: #b2abab;
+  margin: 6px 2px;
+}
