@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from 'react';
+import classNames from 'classnames';
+// import {randomColor} from 'src/utils/helpers';
+import {randomColor} from '../../../utils/helpers';
 import './style.css';
+
 
 export const Message = ({getMessage}) => {
   const [messages, addMessage] = useState([]);
+  const usersColor = {};
+  let previousUser = '';
 
   useEffect(() => {
     getMessage((newMessage) => {
@@ -13,27 +19,39 @@ export const Message = ({getMessage}) => {
   return (
     <ul>
       {messages.map(({content, user, timestamp, id}) => {
-        const date = new Date(timestamp)
-        const hours = date.getHours()
-        const minutes = date.getMinutes()
-        const sentDate = `${hours}:${minutes}`
+          if (!usersColor[user]) {
+            usersColor[user] = `rgba(${randomColor()},${randomColor()},${randomColor()})`
+          }
 
-        const randomColor = () => Math.floor(Math.random() * 255)
-        const color = `rgba(${randomColor()},${randomColor()},${randomColor()}) `
+          const messageClass = classNames({
+            'with-arrow': previousUser !== user,
+            self: user === 'Me',
+            message: true
+          })
 
-        return (
-          <li className='message_wrapper' key={id}>
-            <div className={user === 'Me' ? 'message self' : 'message'}>
-              <p className='message__user' style={{color}}>{user}</p>
-              <p> {content} </p>
-              <span className='message__date'> {sentDate}  </span>
-            </div>
-          </li>
-        )
-      })}
-        </ul>
-        );
-      };
+          const date = new Date(timestamp)
+          const sentDate = `${date.getHours()}:${date.getMinutes()}`
+
+          previousUser = user
+          return (
+            <li className='message_wrapper' key={id}>
+              <div className={messageClass}>
+                {
+                  user !== 'Me' &&
+                  <p className='message__user' style={{color: usersColor[user]}}>
+                    {user}
+                  </p>
+                }
+                <p> {content} </p>
+                <span className='message__date'> {sentDate}  </span>
+              </div>
+            </li>
+          )
+        }
+      )}
+    </ul>
+  );
+};
 
 
 Message.uiName = "Message";

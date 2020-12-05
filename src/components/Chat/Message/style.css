@@ -5,7 +5,7 @@
 .message_wrapper{
   display: flex;
   list-style-type: none;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .message {
@@ -18,6 +18,7 @@
   filter: drop-shadow(0 1px 2px rgba(36, 91, 140, 0.3));
   line-height: 150%;
   min-width: 100px;
+  white-space: pre-wrap;
 }
 
 .message.with-arrow:before {
@@ -30,6 +31,7 @@
   height: 0;
   border-bottom: 17px solid transparent;
   border-right: 17px solid white;
+  margin-top: 20px;
 }
 
 .message.self {
@@ -48,10 +50,17 @@
 
 .message__user {
   font-size: 14px;
+  font-weight: bold;
 }
 
 .message__date {
   font-size: 10px;
   color: #b2abab;
   float: right;
+}
+
+@media screen and (max-width: 1440px) {
+  .message {
+    max-width: 60%;
+  }
 }

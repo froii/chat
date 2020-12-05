@@ -8,16 +8,21 @@
   justify-content: space-between;
   margin: 5% auto;
   padding: 40px;
+  box-sizing: border-box;
 }
 
 
 
 @media screen and (max-width: 1440px) {
-
+  .chat_container {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 1152px) {
-
+  .chat_container {
+    padding: 20px 40px;
+  }
 }
 
 @media screen and (max-width: 767px) {

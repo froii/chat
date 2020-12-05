@@ -1,12 +1,8 @@
 import React from 'react';
+// import {Chat} from 'src/components';
 import {Chat} from '../../components';
 
-const UsersChat = () => {
+const UsersChat = () => <Chat/>;
 
-
-  return (
-    <Chat/>
-  )
-};
 
 export default UsersChat;
