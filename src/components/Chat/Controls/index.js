@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useState, useEffect} from 'react';
 import debounce from "lodash.debounce";
 import './style.css';
 
@@ -15,16 +15,18 @@ export const Controls = memo(({sendMessage, onTyping}) => {
     if(myMessage) sendMessage(myMessage);
   };
 
-  const typing = (e) => {
+  useEffect(()=> {
     stopTyping();
-    onTyping((name)=> { name !== 'Me' && toggleUserTyping(name); });
-  };
+    onTyping((name)=> {
+       name !== 'Me' && toggleUserTyping(name);
+    });
+  }, []);
 
   return (
     <div>
       <span className='typing_info'> {userTyping && `${userTyping} is writing...` }</span>
       <form className="controls" onSubmit={submitForm}>
-        <input name='text' placeholder="Say something" onKeyDown={typing}/>
+        <input name='text' placeholder="Say something" />
         <button> Send </button>
       </form>
     </div>
